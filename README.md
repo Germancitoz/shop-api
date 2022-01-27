@@ -8,7 +8,7 @@ Backend API to use in frontend projects
 - [TypeScript](https://www.typescriptlang.org)
 - [Express](https://expressjs.com)
 - [MySQL](https://www.mysql.com/)
-- [Prisma](https://www.prisma.io)
+- [Sequelize](https://sequelize.org/)
 
 ### More information
 
