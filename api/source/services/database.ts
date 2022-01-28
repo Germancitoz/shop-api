@@ -12,6 +12,7 @@ export const startDatabase = (): Promise<void> => {
   return new Promise(async (resolve, reject) => {
     try {
       const connection = await sequelize.authenticate();
+      await sequelize.sync();
       resolve(connection);
     } catch (error) {
       reject(error);
