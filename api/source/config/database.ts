@@ -10,9 +10,9 @@ type Database = {
 };
 
 const CONFIG_DATABASE: Database = {
-  USER: process.env.DB_USER ?? 'root',
-  PASSWORD: process.env.DB_PASSWORD ?? '',
-  DIALECT: (process.env.DB_DIALECT as Dialect) ?? ('mysql' as Dialect),
-  DB: process.env.DB_NAME ?? 'test',
+  USER: process.env.DATABASE_USER ?? 'root',
+  PASSWORD: process.env.DATABASE_PASSWORD ?? '',
+  DIALECT: (process.env.DATABASE_DIALECT as Dialect) ?? ('mysql' as Dialect),
+  DB: process.env.DATABASE_DB ?? 'test',
 };
 export default CONFIG_DATABASE;
