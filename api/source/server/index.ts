@@ -1,6 +1,7 @@
 import express from 'express';
 import { setHandler } from './handler';
 import { setRoutes } from './router';
+
 import CONFIG_SERVER from '../config/server';
 
 export const startServer = (): express.Application => {
