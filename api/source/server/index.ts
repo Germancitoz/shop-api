@@ -8,6 +8,10 @@ export const startServer = (): express.Application => {
   const app: express.Application = express();
   setHandler(app);
   setRoutes(app);
-  app.listen(CONFIG_SERVER.PORT, () => {});
+  app.listen(CONFIG_SERVER.PORT, () => {
+    console.log(
+      `server listening: [${CONFIG_SERVER.URL}:${CONFIG_SERVER.PORT}]`
+    );
+  });
   return app;
 };
