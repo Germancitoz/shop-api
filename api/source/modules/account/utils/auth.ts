@@ -11,7 +11,7 @@ export const hashPassword = (password: string): Promise<string> => {
   });
 };
 
-export const isValidPassword = async (
+export const isValidPassword = (
   password: string,
   account: AccountType | null
 ): Promise<boolean> => {
