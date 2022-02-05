@@ -12,6 +12,6 @@ Backend API to use in frontend projects
 
 ### More information
 
-- [Endpoints](.https://github.com/Germancitoz/shop-api/docs/endpoints.md)
-- [Entities](.https://github.com/Germancitoz/shop-api/docs/entities.md)
-- [Functions](.https://github.com/Germancitoz/shop-api/docs/functions.md)
+- [Endpoints](https://github.com/Germancitoz/shop-api/blob/main/docs/endpoints.md)
+- [Entities](https://github.com/Germancitoz/shop-api/blob/main/docs/entities.md)
+- [Functions](https://github.com/Germancitoz/shop-api/blob/main/docs/functions.md)
