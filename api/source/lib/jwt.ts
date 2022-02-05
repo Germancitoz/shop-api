@@ -13,11 +13,12 @@ export const verifyToken = (token: string): Promise<jwt.JwtPayload> => {
 };
 
 export const signToken = (account: AccountType): Promise<string> => {
+  const { id } = account;
   return new Promise(async (resolve, reject) => {
     try {
       const token = await jwt.sign(
         {
-          id: account.id,
+          id,
         },
         'SECRET',
         { expiresIn: '1h' }
