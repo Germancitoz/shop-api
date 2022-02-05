@@ -6,13 +6,15 @@ import { isValidPassword } from '../utils/auth';
 
 export const login = async (
   request: express.Request,
-  response: express.Response
+  response: express.Response,
+  next: express.NextFunction
 ) => {
   const { email, password } = request.body;
 
   if (!email || !password) {
     response.status(400).json({
-      message: 'Bad request',
+      success: false,
+      message: 'Please provide an email and password.',
     });
     return;
   }
@@ -25,6 +27,7 @@ export const login = async (
 
   if (!account) {
     response.status(401).json({
+      success: false,
       message: 'Not exist an account with this email',
     });
     return;
@@ -32,18 +35,17 @@ export const login = async (
 
   if (!(await isValidPassword(password, account))) {
     response.status(401).json({
-      message: 'Invalid password',
+      success: false,
+      message: 'Password is incorrect',
     });
     return;
   }
 
   const token = await signToken(account);
-  response.cookie('jwt_token', token, {
-    httpOnly: true,
-  });
-
   response.status(200).json({
+    success: true,
     message: 'Login success',
+    data: token,
   });
 };
 
