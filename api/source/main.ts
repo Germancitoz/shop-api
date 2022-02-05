@@ -1,11 +1,11 @@
-import { startServer } from './server';
-import { startDatabase, closeDatabase } from './services/database';
 import { showTitle } from './lib/title';
+import { startServer } from './server';
+import { closeDatabase, startDatabase } from './services/database';
 
 (async () => {
   await showTitle('Shop-API');
   try {
-    startServer();
+    await startServer();
     await startDatabase();
   } catch (error) {
     console.error(error);
