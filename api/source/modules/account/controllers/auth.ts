@@ -6,8 +6,7 @@ import { isValidPassword } from '../utils/auth';
 
 export const login = async (
   request: express.Request,
-  response: express.Response,
-  next: express.NextFunction
+  response: express.Response
 ) => {
   const { email, password } = request.body;
 
@@ -53,13 +52,85 @@ export const register = async (
   request: express.Request,
   response: express.Response
 ) => {
-  const { name, email, password, country, image } = request.body;
+  const { name, email, password, country } = request.body;
+
+  if (!name || !email || !password || !country) {
+    response.status(400).json({
+      success: false,
+      message: 'Please provide a name, email, password and country.',
+    });
+    return;
+  }
+
+  const account: AccountType | null = await Account.findOne({
+    where: {
+      email,
+    },
+  });
+
+  if (account) {
+    response.status(401).json({
+      success: false,
+      message: 'This email is already registered',
+    });
+    return;
+  }
+
   await Account.create({
     name,
     email,
     password,
     country,
-    image,
   });
-  response.send('register');
+
+  response.status(200).json({
+    success: true,
+    message: 'Register success',
+  });
+};
+
+export const changePassword = async (
+  request: express.Request,
+  response: express.Response
+) => {
+  const { email, password, newPassword } = request.body;
+
+  if (!email || !password || !newPassword) {
+    response.status(400).json({
+      success: false,
+      message: 'Please provide an email, password and new password.',
+    });
+    return;
+  }
+
+  const account: AccountType | null = await Account.findOne({
+    where: {
+      email,
+    },
+  });
+
+  if (!account) {
+    response.status(401).json({
+      success: false,
+      message: 'Not exist an account with this email',
+    });
+    return;
+  }
+
+  if (!(await isValidPassword(password, account))) {
+    response.status(401).json({
+      success: false,
+      message: 'Password is incorrect',
+    });
+    return;
+  }
+
+  await account.update({
+    password: newPassword,
+  });
+
+  response.status(200).json({
+    success: true,
+    message: 'Change password success ',
+  });
 };
