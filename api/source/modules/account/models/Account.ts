@@ -45,7 +45,7 @@ const Account = database.define<AccountType>(
   }
 );
 
-Account.beforeCreate(async (account: AccountType) => {
+Account.beforeSave(async (account: AccountType) => {
   const { password } = account;
   account.password = await hashPassword(password);
 });
