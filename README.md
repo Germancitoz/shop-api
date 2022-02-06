@@ -6,7 +6,7 @@ Backend API to use in frontend projects
 
 - [Node.js](https://nodejs.org)
 - [TypeScript](https://www.typescriptlang.org)
-- [Express](https://expressjs.com)
+- [Express JS](https://expressjs.com)
 - [MySQL](https://www.mysql.com/)
 - [Sequelize](https://sequelize.org/)
 
